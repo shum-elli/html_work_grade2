@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta charset="UTF-8">
+    <title>游戏寻宝界面</title>
+    <style type="text/css">
+
+        *{
+            position: relative;
+            justify-items: center;
+            text-align: center;
+        }
+
+        #myDiv{
+            width: 100px;
+        }
+        #d{
+            text-align: center;
+            margin: 0 auto;
+        }
+        #world{
+            text-align: center;
+            margin: 0 39%;
+        }
+
+		img {width: 100%;} 
+
+    </style>
+    
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+    	var j=0;
+    	
+    	function las()
+    	{
+    		document.getElementById("world").href="End.html";
+    	}
+    	
+    </script>
+    
+    
+</head>
+<body>
+
+
+
+<script src="js/pixi.min.js"></script>
+
+    <div id="myDiv">
+        <script>
+        var app = new PIXI.Application({width:360, height:590, backgroundColor: 0xFFFFFF});
+        document.body.appendChild(app.view);
+
+       
+
+		
+		var container = new PIXI.Container();
+		app.stage.addChild(container);
+		container.x=0;
+		container.y=0;
+		
+		
+		//添加元素
+		var bj = new PIXI.Sprite.from("res/bj.png");
+		container.addChild(bj);
+		bj.scale.set(0.145,0.135);
+		
+		
+		gzx = 132;
+		gzy = 125;
+		
+
+        var gz1 = new PIXI.Sprite.from("res/gz1.png");
+        container.addChild(gz1);
+        gz1.anchor.set(0.5,0.5);
+        gz1.scale.set(0.1,0.1);
+        gz1.x=290;
+        gz1.y=390;
+        var gz11 = new PIXI.Sprite.from("res/gz11.png");
+        container.addChild(gz11);
+        gz11.anchor.set(0.5,0.5);
+        gz11.scale.set(0.15,0.15);
+        gz11.x=290;
+        gz11.y=390;
+        gz11.visible=false;
+
+
+        var gz3 = new PIXI.Sprite.from("res/gz3.png");
+        container.addChild(gz3);
+        gz3.anchor.set(0.5,0.5);
+        gz3.scale.set(0.07,0.07);
+        gz3.x=250;
+        gz3.y=160;
+        var gz33 = new PIXI.Sprite.from("res/gz33.png");
+        container.addChild(gz33);
+        gz33.anchor.set(0.5,0.5);
+        gz33.scale.set(0.07,0.07);
+        gz33.x=250;
+        gz33.y=160;
+        gz33.visible=false;
+
+
+        var gz4 = new PIXI.Sprite.from("res/gz4.png");
+        container.addChild(gz4);
+        gz4.anchor.set(0.5,0.5);
+        gz4.scale.set(0.08,0.08);
+        gz4.x=280;
+        gz4.y=520;
+        var gz44 = new PIXI.Sprite.from("res/gz44.png");
+        container.addChild(gz44);
+        gz44.anchor.set(0.5,0.5);
+        gz44.scale.set(0.45,0.45);
+        gz44.x=280;
+        gz44.y=520;
+        gz44.visible=false;
+
+
+
+        var gz5 = new PIXI.Sprite.from("res/gz5.png");
+        container.addChild(gz5);
+        gz5.anchor.set(0.5,0.5);
+        gz5.scale.set(0.1,0.1);
+        gz5.x=60;
+        gz5.y=180;
+        var gz55 = new PIXI.Sprite.from("res/gz55.png");
+        container.addChild(gz55);
+        gz55.anchor.set(0.5,0.5);
+        gz55.scale.set(0.1,0.1);
+        gz55.x=60;
+        gz55.y=180;
+        gz55.visible=false;
+
+
+
+        var gz6 = new PIXI.Sprite.from("res/gz6.png");
+        container.addChild(gz6);
+        gz6.anchor.set(0.5,0.5);
+        gz6.scale.set(0.08,0.08);
+        gz6.x=220;
+        gz6.y=320;
+        var gz66 = new PIXI.Sprite.from("res/gz66.png");
+        container.addChild(gz66);
+        gz66.anchor.set(0.5,0.5);
+        gz66.scale.set(0.08,0.08);
+        gz66.x=220;
+        gz66.y=320;
+        gz66.visible=false;
+
+
+
+        var gz7 = new PIXI.Sprite.from("res/gz7.png");
+        container.addChild(gz7);
+        gz7.anchor.set(0.5,0.5);
+        gz7.scale.set(0.1,0.1);
+        gz7.x=85;
+        gz7.y=430;
+        var gz77 = new PIXI.Sprite.from("res/gz77.png");
+        container.addChild(gz77);
+        gz77.anchor.set(0.5,0.5);
+        gz77.scale.set(0.1,0.1);
+        gz77.x=85;
+        gz77.y=430;
+        gz77.visible=false;
+
+
+        var gz8 = new PIXI.Sprite.from("res/gz8.png");
+        container.addChild(gz8);
+        gz8.anchor.set(0.5,0.5);
+        gz8.scale.set(0.1,0.1);
+        gz8.x=140;
+        gz8.y=370;
+        var gz88 = new PIXI.Sprite.from("res/gz88.png");
+        container.addChild(gz88);
+        gz88.anchor.set(0.5,0.5);
+        gz88.scale.set(0.1,0.1);
+        gz88.x=140;
+        gz88.y=370;
+        gz88.visible=false;
+
+
+        var gz = new PIXI.Sprite.from("res/gz.png");
+        container.addChild(gz);
+        gz.anchor.set(0.5,0.5);
+        gz.scale.set(0.4,0.4);
+        gz.x=gzx;
+        gz.y=gzy;
+        var bgz = new PIXI.Sprite.from("res/gz2.png");
+        container.addChild(bgz);
+        bgz.anchor.set(0.5,0.5);
+        bgz.scale.set(0.4,0.4);
+        bgz.x=gzx-5;
+        bgz.y=gzy+5;
+        bgz.visible=false;
+		
+		
+		var sz = new PIXI.Sprite.from("res/sz.png");
+		container.addChild(sz);
+		sz.anchor.set(1,0);
+		sz.scale.set(0.3,0.05);
+		sz.x=125;
+		sz.y=90;
+		sz.visible=false;
+		
+		var ww = new Array();
+		
+		for(var i = 0;i<7;i=i+1)
+		{
+			var kg1 = new PIXI.Sprite.from("res/sj.png");
+			ww[i]  = new PIXI.Sprite.from("res/"+(i+1)+".png");
+			container.addChild(kg1);
+			container.addChild(ww[i]);
+			kg1.anchor.set(0.5,0.5);
+			kg1.scale.set(0.06,0.06);
+			
+			ww[i].anchor.set(0.5,0.5);
+			ww[i].scale.set(0.08,0.08);
+			
+			kg1.x=40+i*45;
+			kg1.y=575;
+			ww[i].x=40+i*45;
+			ww[i].y=575;
+			ww[i].visible=false;
+		}
+		
+		
+
+        //变量区
+        var go1 = false;
+        var go2 = false;
+        var go3 = false;
+        var go4 = false;
+        var go5 = false;
+        var go6 = false;
+        var go7 = false;
+
+
+        var back1 = false;
+        var back2 = false;
+        var back3 = false;
+        var back4 = false;
+        var back5 = false;
+        var back6 = false;
+        var back7 = false;
+
+
+
+        var sj1 = false;
+        var sj2 = false;
+        var sj3 = false;
+        var sj4 = false;
+        var sj5 = false;
+        var sj6 = false;
+        var sj7 = false;
+
+
+
+
+        //函数功能区
+        app.ticker.add(animate);
+        function animate()
+        {
+            fpz1();
+            fpz2();
+            fpz3();
+            fpz4();
+            fpz5();
+            fpz6();
+            fpz7();
+            if(j===7)
+            {
+            	las();
+            }
+        }
+
+        gz1.interactive=true;
+        gz1.on("click",active1);
+        gz1.on("touchstart",active1);
+        function active1()
+        {
+            if(gz.x===132 && gz.y===125)
+            {
+                //gz.rotation = -0.5;
+                sz.rotation = -0.5;
+                go1=true;
+                sz.visible=true;
+            }
+            //console.log(go1);
+        }
+
+        gz3.interactive=true;
+        gz3.on("click",active2);
+        gz3.on("touchstart",active2);
+        function active2()
+        {
+            if(gz.x===132 && gz.y===125)
+            {
+                //gz.rotation=-0.7;
+                 sz.rotation = -0.7;
+                 sz.visible=true;
+                go2=true;
+            }
+            //console.log(go2);
+        }
+
+        gz4.interactive=true;
+        gz4.on("click",active3);
+        gz4.on("touchstart",active3);
+        function active3()
+        {
+            if(gz.x===132 && gz.y===125)
+            {
+                //gz.rotation=-0.3;
+                go3=true;
+                sz.rotation = -0.33;
+                 sz.visible=true;
+            }
+            //console.log(go2);
+        }
+
+        gz5.interactive=true;
+        gz5.on("click",active4);
+        gz5.on("touchstart",active4);
+        function active4()
+        {
+            if(gz.x===132 && gz.y===125)
+            {
+                //gz.rotation=0.8;
+                go4=true;
+                 sz.rotation =0.3;
+                 //sz.visible=true;
+            }
+            //console.log(go2);
+        }
+
+
+        gz6.interactive=true;
+        gz6.on("click",active5);
+        gz6.on("touchstart",active5);
+        function active5()
+        {
+            if(gz.x===132 && gz.y===125)
+            {
+                //gz.rotation=-0.3;
+                go5=true;
+                sz.rotation =-0.5;
+                sz.visible=true;
+            }
+            //console.log(go2);
+        }
+
+
+        gz7.interactive=true;
+        gz7.on("click",active6);
+        gz7.on("touchstart",active6);
+        function active6()
+        {
+            if(gz.x===132 && gz.y===125)
+            {
+                //gz.rotation=0.3;
+                go6=true;
+                sz.rotation =0.08;
+                sz.visible=true;
+            }
+            //console.log(go2);
+        }
+
+
+        gz8.interactive=true;
+        gz8.on("click",active7);
+        gz8.on("touchstart",active7);
+        function active7()
+        {
+            if(gz.x===132 && gz.y===125)
+            {
+
+                go7=true;
+                sz.rotation =-0.08;
+                sz.visible=true;
+            }
+            //console.log(go2);
+        }
+
+
+        function fpz1()
+        {
+            var g = gz1;
+            var gg = gz11;
+            if(go1)
+            {
+                if(gz.x!==g.x)gz.x=gz.x+0.8;
+                if(gz.y!==g.y)
+                {
+                	gz.y=gz.y+1.5;
+                	sz.scale.y=sz.scale.y+0.0035;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+
+                if(g.y-gz.y<=20 && g.y-gz.y>=0)
+                {
+
+                    gz.visible=false;
+                    bgz.visible=true;
+                    back1=true;
+                    go1=false;
+
+                }
+
+            }
+            if(back1)
+            {
+
+                //t.Text("back");
+                if(gz.x>gzx)gz.x=gz.x-0.85;
+                if(gz.y>gzy)
+                {
+                	gz.y=gz.y-1.5;
+                	sz.scale.y=sz.scale.y-0.0035;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+                g.visible=false;
+                gg.visible=true;
+                gg.x=bgz.x;
+                gg.y=bgz.y;
+
+
+                if(gz.x<=gzx && gz.y<=gzy)
+                {
+                    //pz11.visible=false;
+                    //pz111.visible=true;
+                    sj1=true;
+                    back1=false;
+                    //pz11.scale.x=0.01;
+                    //pz11.scale.y=0.01;
+                    gz.visible=true;
+                    bgz.visible=false;
+                    gz.rotation=0;
+
+                    sz.visible=false;
+                    sz.scale.y=0;
+                    j++;
+                }
+            }
+            if(sj1)
+            {
+
+
+                if(gg.scale.x>0.02)
+                {
+                    gg.scale.x-=0.005;
+                    gg.scale.y-=0.005;
+                    gg.x-=1;
+                    gg.y+=20;
+                }
+                if(gg.scale.x<0.02)
+                {
+                    
+                    sj1=false;
+                    gg.visible=false;
+                    ww[0].visible=true;
+                    gz.y=gzy;
+                	gz.x=gzx;
+                }
+                
+
+            }
+
+        }
+
+
+        function fpz2()
+        {
+            var g = gz3;
+            var gg = gz33;
+
+            if(go2)
+            {
+                if(gz.x!==g.x)gz.x=gz.x+0.6;
+                if(gz.y!==g.y)
+                {
+                	gz.y++;
+                	sz.scale.y=sz.scale.y+0.004;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+
+                if(g.y-gz.y<=20 && g.y-gz.y>=0)
+                {
+
+                    gz.visible=false;
+                    bgz.visible=true;
+
+                    back2=true;
+                    go2=false;
+
+
+                }
+
+            }
+            if(back2)
+            {
+
+                //t.Text("back");
+                if(gz.x>gzx)gz.x=gz.x-0.6;
+                if(gz.y>gzy)
+                {
+                	gz.y=gz.y-1;
+                	sz.scale.y=sz.scale.y-0.006
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+                g.visible=false;
+                gg.visible=true;
+                gg.x=bgz.x;
+                gg.y=bgz.y;
+
+
+                if(gz.x<=gzx && gz.y<=gzy)
+                {
+                    //pz11.visible=false;
+                    //pz111.visible=true;
+                    sj2=true;
+                    back2=false;
+                    //pz11.scale.x=0.01;
+                    //pz11.scale.y=0.01;
+                    gz.visible=true;
+                    bgz.visible=false;
+                    gz.rotation=0;
+
+                    sz.visible=false;
+                    sz.scale.y=0;
+                    j++;
+                }
+            }
+            if(sj2)
+            {
+
+
+                if(gg.scale.x>0.02)
+                {
+                    gg.scale.x-=0.005;
+                    gg.scale.y-=0.005;
+                    gg.x-=1;
+                    gg.y+=20;
+
+                }
+                if(gg.scale.x<0.02)
+                {
+                    gz.y=gzy;
+                    gz.x=gzx;
+                    sj2=false;
+                    gg.visible=false;
+
+                    ww[1].visible=true;
+                }
+
+            }
+
+        }
+
+
+        function fpz3()
+        {
+            var g = gz4;
+            var gg = gz44;
+
+            if(go3)
+            {
+                if(gz.x!==g.x)gz.x=gz.x+0.8;
+                if(gz.y!==g.y){
+                	gz.y=gz.y+2.5;
+                	sz.scale.y=sz.scale.y+0.005;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+
+                if(g.y-gz.y<=20 && g.y-gz.y>=0)
+                {
+
+                    gz.visible=false;
+                    bgz.visible=true;
+
+                    back3=true;
+                    go3=false;
+
+
+                }
+
+            }
+            if(back3)
+            {
+
+                //t.Text("back");
+                if(gz.x>gzx)gz.x=gz.x-0.8;
+                if(gz.y>gzy)
+                {
+                	gz.y=gz.y-2.5;
+                	sz.scale.y=sz.scale.y-0.005;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+                g.visible=false;
+                gg.visible=true;
+                gg.x=bgz.x;
+                gg.y=bgz.y;
+
+
+                if(gz.x<=gzx && gz.y<=gzy)
+                {
+                    //pz11.visible=false;
+                    //pz111.visible=true;
+                    sj3=true;
+                    back3=false;
+                    //pz11.scale.x=0.01;
+                    //pz11.scale.y=0.01;
+                    gz.visible=true;
+                    bgz.visible=false;
+                    gz.rotation=0;
+
+                    sz.visible=false;
+                    sz.scale.y=0;
+                    j++;
+                }
+            }
+            if(sj3)
+            {
+
+
+                if(gg.scale.x>0.02)
+                {
+                    gg.scale.x-=0.005;
+                    gg.scale.y-=0.005;
+                    gg.x-=1;
+                    gg.y+=20;
+
+                }
+                if(gg.scale.x<0.02)
+                {
+                    gz.y=gzy;
+                    gz.x=gzx;
+                    sj3 = false;
+                    gg.visible=false;
+
+                     ww[2].visible=true;
+                }
+
+            }
+
+        }
+
+        function fpz4()
+        {
+            var g = gz5;
+            var gg = gz55;
+            //console.log(go4);
+            if(go4)
+            {
+                if(gz.x!==g.x)gz.x=gz.x-0.8;
+                if(gz.y!==g.y)
+                {
+                	gz.y=gz.y+0.8;
+                	sz.scale.y=sz.scale.y+0.005;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+
+                if(g.y-gz.y<=20 && g.y-gz.y>=0)
+                {
+
+                    gz.visible=false;
+                    bgz.visible=true;
+
+                    back4=true;
+                    go4=false;
+                }
+
+            }
+            if(back4)
+            {
+
+                //t.Text("back");
+                if(gz.x<gzx)gz.x=gz.x+3;
+                if(gz.y>gzy)
+                {
+                	gz.y=gz.y-0.8;
+                	sz.scale.y=sz.scale.y-0.005;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+                g.visible=false;
+                gg.visible=true;
+                gg.x=bgz.x;
+                gg.y=bgz.y;
+
+
+                if(gz.x>=gzx && gz.y<=gzy)
+                {
+                    //pz11.visible=false;
+                    //pz111.visible=true;
+                    sj4=true;
+                    back4=false;
+                    //pz11.scale.x=0.01;
+                    //pz11.scale.y=0.01;
+                    gz.visible=true;
+                    bgz.visible=false;
+                    gz.rotation=0;
+
+                    sz.scale.y=0;
+                    j++;
+                }
+            }
+            if(sj4)
+            {
+
+
+                if(gg.scale.x>0.02)
+                {
+                    gg.scale.x-=0.005;
+                    gg.scale.y-=0.005;
+                    gg.x-=1;
+                    gg.y+=20;
+
+                }
+                if(gg.scale.x<0.02)
+                {
+                    gz.y=gzy;
+                    gz.x=gzx;
+                    sj4 = false;
+                    gg.visible=false;
+
+                     ww[3].visible=true;
+                }
+
+            }
+
+        }
+
+        function fpz5()
+        {
+            var g = gz6;
+            var gg = gz66;
+
+            if(go5)
+            {
+                if(gz.x!==g.x)gz.x=gz.x+0.8;
+                if(gz.y!==g.y)
+                {
+                	gz.y=gz.y+1.5;
+                	sz.scale.y=sz.scale.y+0.0037;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+
+                if(g.y-gz.y<=20 && g.y-gz.y>=0)
+                {
+
+                    gz.visible=false;
+                    bgz.visible=true;
+
+                    back5=true;
+                    go5=false;
+
+                }
+
+            }
+            if(back5)
+            {
+
+                //t.Text("back");
+                if(gz.x>gzx)gz.x=gz.x-0.8;
+                if(gz.y>gzy)
+                {
+                	gz.y=gz.y-1.5;
+                	sz.scale.y=sz.scale.y-0.004;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+                g.visible=false;
+                gg.visible=true;
+                gg.x=bgz.x;
+                gg.y=bgz.y;
+
+
+                if(gz.x<=gzx && gz.y<=gzy)
+                {
+                    //pz11.visible=false;
+                    //pz111.visible=true;
+                    sj5=true;
+                    back5=false;
+                    //pz11.scale.x=0.01;
+                    //pz11.scale.y=0.01;
+                    gz.visible=true;
+                    bgz.visible=false;
+                    gz.rotation=0;
+
+                    sz.visible=false;
+                    sz.scale.y=0;
+                    j++;
+                }
+            }
+            if(sj5)
+            {
+
+
+                if(gg.scale.x>0.02)
+                {
+                    gg.scale.x-=0.004;
+                    gg.scale.y-=0.004;
+                    gg.x-=1;
+                    gg.y+=20;
+
+                }
+                if(gg.scale.x<0.02)
+                {
+                    gz.y=gzy;
+                    gz.x=gzx;
+                    sj5 = false;
+                    gg.visible=false;
+
+                     ww[4].visible=true;
+                }
+
+            }
+
+        }
+
+        function fpz6()
+        {
+            var g = gz7;
+            var gg = gz77;
+
+            if(go6)
+            {
+                if(gz.x!==g.x)gz.x=gz.x-0.5;
+                if(gz.y!==g.y)
+                {
+                	gz.y=gz.y+2.5;
+                	sz.scale.y = sz.scale.y+0.005;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+
+                if(g.y-gz.y<=20 && g.y-gz.y>=0)
+                {
+
+                    gz.visible=false;
+                    bgz.visible=true;
+
+                    back6=true;
+                    go6=false;
+                }
+
+            }
+            if(back6)
+            {
+
+                //t.Text("back");
+                if(gz.x<gzx)gz.x=gz.x+0.5;
+                if(gz.y>gzy)
+                {
+                	gz.y=gz.y-2.5;
+                	sz.scale.y = sz.scale.y-0.005;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+                g.visible=false;
+                gg.visible=true;
+                gg.x=bgz.x;
+                gg.y=bgz.y;
+
+
+                if(gz.x>=gzx && gz.y<=gzy)
+                {
+                    //pz11.visible=false;
+                    //pz111.visible=true;
+                    sj6=true;
+                    back6=false;
+                    //pz11.scale.x=0.01;
+                    //pz11.scale.y=0.01;
+                    gz.visible=true;
+                    bgz.visible=false;
+                    gz.rotation=0;
+                    sz.visible=false;
+                    sz.scale.y=0;
+                    j++;
+                }
+            }
+            if(sj6)
+            {
+
+
+                if(gg.scale.x>0.02)
+                {
+                    gg.scale.x-=0.005;
+                    gg.scale.y-=0.005;
+                    gg.x-=1;
+                    gg.y+=20;
+
+                }
+                if(gg.scale.x<0.02)
+                {
+                    gz.y=gzy;
+                    gz.x=gzx;
+                    sj6 = false;
+                    gg.visible=false;
+
+                     ww[5].visible=true;
+                }
+
+            }
+
+        }
+
+        function fpz7()
+        {
+            var g = gz8;
+            var gg = gz88;
+
+            if(go7)
+            {
+                //if(gz.x!==g.x)gz.x=gz.x+0.3;
+                if(gz.y!==g.y)
+                {
+                	gz.y=gz.y+2;
+                	
+                	sz.scale.y+=0.004;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+
+                if(g.y-gz.y<=20 && g.y-gz.y>=0)
+                {
+
+                    gz.visible=false;
+                    bgz.visible=true;
+
+                    back7=true;
+                    go7=false;
+                }
+
+            }
+            if(back7)
+            {
+
+                //t.Text("back");
+                //if(gz.x>gzx)gz.x=gz.x-0.6;
+                if(gz.y>gzy)
+                {
+                	gz.y=gz.y-2;
+                	sz.scale.y-=0.004;
+                }
+                bgz.x=gz.x;
+                bgz.y=gz.y;
+                g.visible=false;
+                gg.visible=true;
+                gg.x=bgz.x;
+                gg.y=bgz.y;
+
+
+                if(gz.x<=gzx && gz.y<=gzy)
+                {
+                    //pz11.visible=false;
+                    //pz111.visible=true;
+                    sj7=true;
+                    back7=false;
+                    //pz11.scale.x=0.01;
+                    //pz11.scale.y=0.01;
+                    gz.visible=true;
+                    bgz.visible=false;
+                    gz.rotation=0;
+
+                    sz.visible=false;
+                    sz.scale.y=0;
+                    j++;
+                }
+            }
+            if(sj7)
+            {
+
+
+                if(gg.scale.x>0.02)
+                {
+                    gg.scale.x-=0.005;
+                    gg.scale.y-=0.005;
+                    gg.x-=1;
+                    gg.y+=20;
+
+                }
+                if(gg.scale.x<0.02)
+                {
+                    gz.y=gzy;
+                    gz.x=gzx;
+                    sj7 = false;
+                    gg.visible=false;
+
+                     ww[6].visible=true;
+                }
+
+            }
+
+        }
+
+
+    </script>
+    </div>
+
+    <div >
+        <h3><a id="world">文物馆</a></h3>
+    </div>
+</body>
+</html>

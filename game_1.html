@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>寻宝游戏</title>
+		<style>
+		</style>
+	</head>
+	
+	<script src="js/pixi.min.js"></script>
+	<body>
+		<script typec="text/javascript">
+		var winWidth = 0;
+		var winHeight = 0;
+		function findDimensions() //函数：获取尺寸
+		{
+		//获取窗口宽度
+		if (window.innerWidth)
+		winWidth = window.innerWidth;
+		else if ((document.body) && (document.body.clientWidth))
+		winWidth = document.body.clientWidth;
+		//获取窗口高度
+		if (window.innerHeight)
+		winHeight = window.innerHeight;
+		else if ((document.body) && (document.body.clientHeight))
+		winHeight = document.body.clientHeight;
+		//通过深入Document内部对body进行检测，获取窗口大小
+		if (document.documentElement  && document.documentElement.clientHeight && document.documentElement.clientWidth)
+		{
+		winHeight = document.body.clientHeight;
+		winWidth = document.body.clientWidth;
+		}
+		//alert(winHeight+"\n"+winWidth);
+		}
+		
+		findDimensions();
+		
+		
+		var loading_flag=0;
+		var count_flag_1=0;
+		var bg_flag=0;
+		var info_flag=0;
+		var relics_count=0;
+		
+		
+		var app = new PIXI.Application({width:964, height:1920, backgroundColor: 0xFFFFFF});
+		document.body.appendChild(app.view);
+		
+		var container = new PIXI.Container();
+		app.stage.addChild(container);
+		container.x=0;
+		container.y=0;
+		container.scale.x=winWidth/1120;
+		container.scale.y=winWidth/1120;
+		
+
+		var bg = new PIXI.Sprite.from("img/bg.png");
+		bg.x=0;
+		bg.y=0;
+		bg.interactive = true;
+		bg.scale.x=winWidth/242;
+		bg.scale.y=winWidth/242;
+		bg
+		        .on('pointerdown',BgMove_1)
+		        .on('pointerup', BgMove_2)
+				.on('pointermove', BgMove_3);
+		container.addChild(bg);
+		
+		var object_1 = new PIXI.Sprite.from("img/13.png");
+		object_1.anchor.set(0.5,0.5);
+		object_1.x=695;
+		object_1.y=1000;
+		object_1.scale.set(0.13);
+		object_1.interactive = true;
+		object_1.on("tap",transfer_1);
+		container.addChild(object_1);
+		
+		
+	
+		var object_2 = new PIXI.Sprite.from("img/14.png");
+		object_2.anchor.set(0.5,0.5);
+		object_2.x=790;
+		object_2.y=1000;
+		object_2.scale.set(0.4);
+		container.addChild(object_2);
+		
+		var object_3 = new PIXI.Sprite.from("img/9.png");
+		object_3.anchor.set(0.5,0.5);
+		object_3.x=2085;
+		object_3.y=60;
+		object_3.scale.set(0.3);
+		container.addChild(object_3);
+		
+		var object_4 = new PIXI.Sprite.from("img/10.png");
+		object_4.anchor.set(0.5,0.5);
+		object_4.x=2095;
+		object_4.y=58;
+		object_4.scale.set(0.1);
+		object_4.interactive = true;
+		container.addChild(object_4);
+
+		
+		var object_6 = new PIXI.Sprite.from("img/15.png");
+		object_6.anchor.set(0.5,0.5);
+		object_6.x=365;
+		object_6.y=288;
+		object_6.scale.set(0.2);
+		object_6.interactive = true;
+		container.addChild(object_6);
+		
+		
+		var object_5 = new PIXI.Sprite.from("img/16.png");
+		object_5.anchor.set(0.5,0.5);
+		object_5.x=385;
+		object_5.y=317;
+		object_5.scale.set(0.3);
+		object_5.rotation=-0.05;
+		container.addChild(object_5);
+		
+		
+		
+		var object_7 = new PIXI.Sprite.from("img/5.png");
+		object_7.anchor.set(0.5,0.5);
+		object_7.x=3415;
+		object_7.y=300;
+		object_7.scale.set(0.43);
+		container.addChild(object_7);
+		
+		
+		
+		var object_8 = new PIXI.Sprite.from("img/6.png");
+		object_8.anchor.set(0.5,0.5);
+		object_8.x=3445;
+		object_8.y=228;
+		object_8.scale.set(0.12);
+		object_8.interactive = true;
+		container.addChild(object_8);
+		
+		
+		var object_10 = new PIXI.Sprite.from("img/11.png");
+		object_10.anchor.set(0.5,0.5);
+		object_10.x=1752;
+		object_10.y=875;
+		object_10.scale.set(0.13);
+		object_10.interactive = true;
+		container.addChild(object_10);
+		
+		var object_9 = new PIXI.Sprite.from("img/12.png");
+		object_9.anchor.set(0.5,0.5);
+		object_9.x=1765;
+		object_9.y=960;
+		object_9.scale.set(0.39);
+		container.addChild(object_9);
+		
+		var object_12 = new PIXI.Sprite.from("img/7.png");
+		object_12.anchor.set(0.5,0.5);
+		object_12.x=3405;
+		object_12.y=1452;
+		object_12.scale.set(0.14);
+		object_12.interactive = true;
+		container.addChild(object_12);
+		
+		 
+		
+		var object_11 = new PIXI.Sprite.from("img/8.png");
+		object_11.anchor.set(0.5,0.5);
+		object_11.rotation=3.14;
+		object_11.x=3412;
+		object_11.y=1470;
+		object_11.scale.set(0.17);
+		container.addChild(object_11);
+		
+		
+		var object_13 = new PIXI.Sprite.from("img/17.png");
+		object_13.anchor.set(0.5,0.5);
+		object_13.x=685;
+		object_13.y=1460;
+		object_13.scale.set(0.5);
+		container.addChild(object_13);
+		
+		
+		
+		var object_14 = new PIXI.Sprite.from("img/2.png");
+		object_14.anchor.set(0.5,0.5);
+		object_14.x=725;
+		object_14.y=1368;
+		object_14.scale.set(0.1);
+		object_14.interactive = true;
+		container.addChild(object_14);
+		
+		
+		var object_16 = new PIXI.Sprite.from("img/3.png");
+		object_16.anchor.set(0.5,0.5);
+		object_16.x=495;
+		object_16.y=658;
+		object_16.scale.set(0.1);
+		object_16.interactive = true;
+		container.addChild(object_16);
+		
+		var object_15 = new PIXI.Sprite.from("img/4.png");
+		object_15.anchor.set(0.5,0.5);
+		object_15.x=500;
+		object_15.y=655;
+		object_15.scale.set(0.23);
+		container.addChild(object_15);
+		
+		var ground = new PIXI.Sprite.from("img/ground.png");
+		ground.x=1470;
+		ground.y=1620;
+		ground.rotation=-0.5;
+		ground.scale.x=1.65;
+		ground.scale.y=1.85;
+		ground.alpha=0;
+		ground.interactive=true;
+		ground.on("tap",tip)
+		container.addChild(ground);
+		
+		var tip_no = new PIXI.Sprite.from("img/tip/tip_no.png");
+		tip_no.x=1250;
+		tip_no.y=200;
+		tip_no.scale.set(0.5);
+		tip_no.interactive=true;
+		tip_no.on("tap",tip_no_exit)
+		// container.x=-1000;
+
+		
+		
+		
+		for(var i =0;i<8;i++){
+			var Vacancy = new PIXI.Sprite.from("img/lattice.png");
+			Vacancy.anchor.set(0.5,0.5);
+			Vacancy.x=i*220+150;
+			Vacancy.y=2050;
+			Vacancy.scale.set(0.25);
+			container.addChild(Vacancy);
+		}
+		
+		var relics=[];
+		
+		for(var i =0;i<8;i++){
+			var temp = new PIXI.Sprite.from("img/2/relics_"+(i+1)+".png");
+			temp.anchor.set(0.5,0.5);
+			temp.x=i*220+150;
+			temp.y=2030;
+			temp.scale.set(1);
+			relics.push(temp);
+			//container.addChild(relics[i]);
+		}
+		
+		
+		
+		
+		var black = new PIXI.Sprite.from("img/info/black.png");
+		black.x=0;
+		black.y=0;
+		black.scale.set(1.35);
+		black.alpha=0;
+		black.interactive=true;
+		black.on("tap",loading_flag_change);
+		container.addChild(black);
+
+
+		var black_1 = new PIXI.Sprite.from("img/info/black_1.png");
+		black_1.x=0;
+		black_1.y=0;
+		black_1.scale.set(0.61);
+	
+		
+		var tip_1 = new PIXI.Sprite.from("img/info/tip_1.png");
+		tip_1.x=606;
+		tip_1.y=1030;
+		tip_1.scale.set(0.41);
+		
+
+		var tip_3 = new PIXI.Sprite.from("img/info/tip_3.png");
+		tip_3.x=500;
+		tip_3.y=1040;
+		tip_3.scale.set(0.87);
+		
+		var tip_2 = new PIXI.Sprite.from("img/info/tip_2.png");
+		tip_2.x=765;
+		tip_2.y=940;
+		tip_2.scale.set(0.87);
+		
+		var info_bg = new PIXI.Sprite.from("img/info/info_bg.png")
+		info_bg.x=80;
+		info_bg.y=80;
+		info_bg.scale.set(0.6);
+		//container.addChild(info_bg);
+		
+		var Cam = new PIXI.Sprite.from("img/info/Cam.png")
+		Cam.x=125;
+		Cam.y=120;
+		Cam.scale.set(0.7);
+		Cam.interactive = true;
+		
+		//container.addChild(Cam);
+		
+		var Exit = new PIXI.Sprite.from("img/info/Exit.png")
+		Exit.x=900;
+		Exit.y=120;
+		Exit.scale.set(0.7);
+		Exit.interactive = true;
+		Exit.on("tap",exit);
+		//container.addChild(Exit);
+		
+		var button_1_1 = new PIXI.Sprite.from("img/info/button_1_1.png")
+		button_1_1.x=160;
+		button_1_1.y=1670;
+		button_1_1.scale.set(0.6);
+		button_1_1.interactive = true;
+		button_1_1.on("tap",info_1_1);
+		//container.addChild(button_1_1);
+		
+		var button_1_2 = new PIXI.Sprite.from("img/info/button_1_2.png")
+		button_1_2.x=160;
+		button_1_2.y=1670;
+		button_1_2.scale.set(0.6);
+		button_1_2.interactive = true;
+		button_1_2.on("tap",info_1_1);
+		//container.addChild(button_1_2);
+		
+		var button_2_1 = new PIXI.Sprite.from("img/info/button_2_1.png")
+		button_2_1.x=620;
+		button_2_1.y=1670;
+		button_2_1.scale.set(0.6);
+		button_2_1.interactive = true;
+		button_2_1.on("tap",info_1_2);
+		//container.addChild(button_2_1);
+		
+		var button_2_2 = new PIXI.Sprite.from("img/info/button_2_2.png")
+		button_2_2.x=620;
+		button_2_2.y=1670;
+		button_2_2.scale.set(0.6);
+		button_2_2.interactive = true;
+		button_2_2.on("tap",info_1_2);
+		//container.addChild(button_2_2);
+		
+		
+		
+		
+		var info=[];
+		
+		for(var i=0;i<=15;i++){
+			var temp = new PIXI.Sprite.from("img/info/1/info_"+(i+1)+".png");
+			//temp.anchor.set(0.5,0.5);
+			temp.scale.set(0.73);
+			temp.x=165;
+			temp.y=210;
+			info.push(temp);
+			//container.addChild(info[i]);
+		}
+		
+		
+		//container.addChild(info[10]);
+		
+
+		
+		app.ticker.add(loading);
+		
+		
+
+		function BgMove_1(event){
+			if(bg_flag==1){
+				this.dragging = true;
+				this.data = event.data;
+				this.oldPosition = this.data.getLocalPosition(this.parent);
+			}
+		}
+		function BgMove_2(){
+			if(bg_flag==1){
+				this.dragging = false;
+				this.data = null;
+			}
+			
+		
+		}
+		function BgMove_3() {
+			if(bg_flag==1){
+				if (this.dragging) {
+				    const newPosition = this.data.getLocalPosition(this.parent);
+				    if(newPosition.x-this.oldPosition.x>0 && container.x<=-10){
+						container.x += Math.abs(newPosition.x-this.oldPosition.x);
+					}
+					if(newPosition.x-this.oldPosition.x<0 && container.x>=-2240){
+						container.x -= Math.abs(newPosition.x-this.oldPosition.x);
+					}
+				    // this.y += newPosition.y-this.oldPosition.y;
+				}
+			}
+		    
+		}
+		
+		function test(){
+			alert("ok");
+		}
+		
+		function loading_flag_change(){
+			loading_flag=1;
+		}
+		
+		function loading(){
+			if(loading_flag==1){
+				black.alpha+=0.01;
+				if(black.alpha>=1){
+					loading_flag=2;
+				}
+			}
+			if(loading_flag==2){
+				black.alpha-=0.01;
+				if(black.alpha<=0.6){
+					container.removeChild(black);
+					container.addChild(black_1);
+					container.addChild(tip_2);
+					container.addChild(tip_3);
+					container.addChild(tip_1);
+					loading_flag=3;
+				}	
+			}
+			if(loading_flag==3){
+				count_flag_1++;
+				if(count_flag_1%6==0){
+					tip_3.visible=!tip_3.visible;
+				}
+			}
+			
+		}
+		
+		
+		function clearstart(){
+			app.ticker.remove(loading);
+			container.removeChild(black_1);
+			container.removeChild(tip_2);
+			container.removeChild(tip_3);
+			container.removeChild(tip_1);
+
+			object_4.on("tap",transfer_2);
+			object_6.on("tap",transfer_3);
+			object_8.on("tap",transfer_4);
+			object_10.on("tap",transfer_5);
+			object_12.on("tap",transfer_6);
+			object_14.on("tap",transfer_7);
+			object_16.on("tap",transfer_8);
+		}
+		
+		
+		function info_1_1(){
+			clearstart();
+
+			container.addChild(info_bg);
+			container.addChild(info[info_flag]);
+			container.addChild(Exit);
+			container.addChild(Cam);
+			container.addChild(button_1_1);
+			container.addChild(button_2_2);
+				
+		}
+		
+		function info_1_2(){
+			container.removeChild(info[info_flag]);
+			container.removeChild(button_1_1);
+			container.removeChild(button_2_2);
+			container.addChild(info[info_flag+1]);
+			container.addChild(button_1_2);
+			container.addChild(button_2_1);
+		}
+		
+		function exit(){
+			container.removeChild(info[info_flag]);
+			container.removeChild(button_1_1);
+			container.removeChild(button_2_2);
+			container.removeChild(info[info_flag+1]);
+			container.removeChild(button_1_2);
+			container.removeChild(button_2_1);
+			container.removeChild(info_bg);
+			container.removeChild(Exit);
+			container.removeChild(Cam);
+			container.addChild(relics[(info_flag/2)]);
+			bg_flag=1;
+		}
+		
+		function transfer_1(){
+			bg_flag=2;
+			info_flag=0;
+			info_1_1();
+			relics_count+=1;
+			container.removeChild(object_1);
+		}
+		
+		function transfer_2(){
+			bg_flag=2;
+			info_flag=2;
+			info_1_1();
+			container.x=0;
+			relics_count+=1;
+			container.removeChild(object_4);
+		}
+		
+		function transfer_3(){
+			bg_flag=2;
+			info_flag=4;
+			info_1_1();
+			container.x=0;
+			relics_count+=1;
+			container.removeChild(object_6);
+		}
+		
+		function transfer_4(){
+			bg_flag=2;
+			info_flag=6;
+			info_1_1();
+			container.x=0;
+			relics_count+=1;
+			container.removeChild(object_8);
+		}
+		
+		function transfer_5(){
+			bg_flag=2;
+			info_flag=8;
+			info_1_1();
+			container.x=0;
+			relics_count+=1;
+			container.removeChild(object_10);
+		}
+		
+		function transfer_6(){
+			bg_flag=2;
+			info_flag=10;
+			info_1_1();
+			container.x=0;
+			relics_count+=1;
+			container.removeChild(object_12);
+		}
+		
+		function transfer_7(){
+			bg_flag=2;
+			info_flag=12;
+			info_1_1();
+			container.x=0;
+			relics_count+=1;
+			container.removeChild(object_14);
+		}
+		
+		function transfer_8(){
+			bg_flag=2;
+			info_flag=14;
+			info_1_1();
+			container.x=0;
+			relics_count+=1;
+			container.removeChild(object_16);
+		}
+		
+		function tip(){
+			if(relics_count==128){
+				location.replace("game_2.html");
+			}
+			else{
+				container.addChild(tip_no);
+				container.x=-1000;
+				bg_flag=2;
+			}
+			
+		}
+		
+		function tip_no_exit(){
+			container.removeChild(tip_no);
+			bg_flag=1;
+		}
+		
+		
+		
+		
+		</script>
+		
+		
+	</body>
+</html>
